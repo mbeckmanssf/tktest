@@ -1,0 +1,31 @@
+<!--
+  Generated template for the ResultsPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
+<ion-header>
+
+  <ion-navbar color="primary" text-center>
+    <ion-title>Results</ion-title>
+    <ion-buttons end side="primary">
+      <button ion-button icon-only (click)="toLobby()" *ngIf="showHome">
+        <ion-icon name="home"></ion-icon>
+      </button>
+    </ion-buttons>
+    
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+  <ion-item>{{this.tests}}</ion-item>
+  <ion-card>
+    <canvas #barCanvas>
+      
+    </canvas>
+  </ion-card>
+
+</ion-content>
