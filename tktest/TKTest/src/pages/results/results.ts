@@ -81,6 +81,6 @@ export class ResultsPage {
 
   }
   toLobby(){
-    this.navCtrl.push(LobbyPage);
+    this.navCtrl.setRoot(LobbyPage);
   }
 }

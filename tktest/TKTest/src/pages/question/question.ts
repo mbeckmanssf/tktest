@@ -430,14 +430,14 @@ Text: "I always share the problem with the other person so that we can work it o
 Style: "Collaborating",
 id: "581283b657e0fdd11b84d368"
 }]
-  
+
 @Component({
   selector: 'page-question',
   templateUrl: 'question.html',
 })
 export class QuestionPage {
   @ViewChild(Slides) slides: Slides;
-  questions: any = apiQuestions;
+  questions: any = [];
   testAnswers: any = {};
   constructor(public navCtrl: NavController, public navParams: NavParams) {
     for(let singleQuestion of apiQuestions) {
@@ -473,7 +473,7 @@ export class QuestionPage {
       this.testAnswers.createDate = new Date().toISOString();
       tests.push(this.testAnswers);
       window.localStorage.setItem("tests", JSON.stringify(tests));
-      this.navCtrl.push(ResultsPage, {
+      this.navCtrl.setRoot(ResultsPage, {
       test: this.testAnswers,
       showHome: true
     });

@@ -9,8 +9,6 @@ import { ResultsPage } from './../results/results';
  * on Ionic pages and navigation.
  */
 
-//let tests = [];
-
 @Component({
   selector: 'page-history',
   templateUrl: 'history.html',
