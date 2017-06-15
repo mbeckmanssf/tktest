@@ -16,7 +16,7 @@ import { LobbyPage } from '../../pages/lobby/lobby';
   templateUrl: 'login.html',
 })
 export class LoginPage {
-  user: any = {} 
+  user: any = {}; 
   constructor(
     public navCtrl: NavController, 
     public navParams: NavParams, 

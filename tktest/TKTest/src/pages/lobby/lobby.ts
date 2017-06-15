@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
 import { QuestionPage } from './../question/question'
 import { HistoryPage } from './../history/history'
+import { AppUsers } from '../../providers/app-user/app-user';
 
 /**
  * Generated class for the LobbyPage page.
@@ -15,8 +16,11 @@ import { HistoryPage } from './../history/history'
   templateUrl: 'lobby.html',
 })
 export class LobbyPage {
-
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  token: any = {};
+  constructor(
+    public navCtrl: NavController, 
+    public navParams: NavParams,
+    public appUsers: AppUsers) {
   }
 
   ionViewDidLoad() {
@@ -28,5 +32,8 @@ export class LobbyPage {
   showHistory() {
     this.navCtrl.push(HistoryPage);
   }
-
+  
+  logout() {
+    this.appUsers.logout(this.token)
+  }
 }

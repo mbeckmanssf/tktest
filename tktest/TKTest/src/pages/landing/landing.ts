@@ -29,4 +29,7 @@ export class LandingPage {
   login() {
     this.navCtrl.push(LoginPage);
   }
+  information() {
+    alert("The Thomas-Killman Conflict Test is a 30-question test which measures a person's conflict management style.");
+  }
 }
