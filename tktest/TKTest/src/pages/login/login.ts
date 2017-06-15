@@ -1,6 +1,9 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 
+import { AppUsers } from '../../providers/app-user/app-user';
+import { LobbyPage } from '../../pages/lobby/lobby';
+
 /**
  * Generated class for the LoginPage page.
  *
@@ -13,12 +16,36 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
   templateUrl: 'login.html',
 })
 export class LoginPage {
-
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  user: any = {} 
+  constructor(
+    public navCtrl: NavController, 
+    public navParams: NavParams, 
+    public appUsers: AppUsers) {
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad LoginPage');
   }
-
+  loginForm(form) {
+    console.log(form);
+    if(form.invalid) {
+      return alert("Please fill in all of the required fields.");
+    }
+  
+    this.appUsers.login(this.user)
+    .map(res => res.json())
+    .subscribe(res => {
+      // handle successful responses and decide what happens next
+      window.localStorage.setItem('token', res.id);
+      window.localStorage.setItem('userId', res.userId);
+        this.navCtrl.setRoot(LobbyPage);
+    }, error => {
+        // inform the user of any known problems that arose, otherwise give a generic failed message
+        if(error === 404){
+          return alert("Destination not found, please try again.")
+        } else {
+          return alert("An error has ocurred, please try again.");
+        }
+    });
+  }
 }

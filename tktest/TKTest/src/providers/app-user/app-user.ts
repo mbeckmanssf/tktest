@@ -12,6 +12,7 @@ import 'rxjs/add/operator/map';
 export class AppUsers {
   baseUrl: string = "http://marenssf-phortonssf.c9users.io:8080/api";
   path: string = "/AppUsers";
+  loginPath: string = "/login";
   constructor(public http: Http) {
     console.log('Hello AppUsers Provider');
   }
@@ -19,6 +20,12 @@ export class AppUsers {
     return this.http.post(
       this.baseUrl + this.path,
       newUserData
+    );
+  }
+  login(loginUserData) {
+    return this.http.post(
+      this.baseUrl + this.path + this.loginPath,
+      loginUserData
     );
   }
 }
