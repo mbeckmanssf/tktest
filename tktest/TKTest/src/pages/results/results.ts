@@ -25,6 +25,7 @@ export class ResultsPage {
   ionViewDidLoad() {
     console.log('ionViewDidLoad ResultsPage');
     this.test = this.navParams.get("test");
+    console.log(this.test);
     this.showHome = this.navParams.get("showHome");
     this.barChart = new Chart(this.barCanvas.nativeElement, {
       type: 'bar',

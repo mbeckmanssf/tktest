@@ -34,6 +34,6 @@ export class LobbyPage {
   }
   
   logout() {
-    this.appUsers.logout(this.token)
+    this.appUsers.logout(window.localStorage.getItem("token"))
   }
 }

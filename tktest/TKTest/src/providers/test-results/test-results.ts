@@ -10,9 +10,23 @@ import 'rxjs/add/operator/map';
 */
 @Injectable()
 export class TestResults {
-
+  testResults: any;
+  token: any;
+  userId: any;
+  baseUrl: string = "http://marenssf-phortonssf.c9users.io:8080/api";
+  path: string = "/TestResults";
   constructor(public http: Http) {
-    console.log('Hello TestResultsProvider Provider');
+    console.log('Hello TestResults Provider');
   }
-
+  saveTest(testAnswers) {
+    return this.http.post(
+      this.baseUrl + this.path,
+      testAnswers
+    );
+  }
+  getTests(token) {
+    this.userId = window.localStorage.getItem("userId");
+    return this.http.get(
+      this.baseUrl + this.path + "?filter[where][userId]=" + this.userId)
+  }
 }
