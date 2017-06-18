@@ -2,6 +2,8 @@ import { Component, ViewChild } from '@angular/core';
 import { NavController, NavParams, Slides } from 'ionic-angular';
 import { ResultsPage } from './../results/results'
 
+import { Questions } from '../../providers/questions/questions';
+
 /**
  * Generated class for the QuestionPage page.
  *
@@ -10,7 +12,7 @@ import { ResultsPage } from './../results/results'
  */
 
 //api json
-let apiQuestions = [{
+/*let apiQuestions = [{
 Question_Number: 1,
 Answer_ID: "A",
 Text: "There are times when I let others take responsibility for solving the problem.",
@@ -430,24 +432,34 @@ Text: "I always share the problem with the other person so that we can work it o
 Style: "Collaborating",
 id: "581283b657e0fdd11b84d368"
 }]
-
+*/
 @Component({
   selector: 'page-question',
   templateUrl: 'question.html',
 })
 export class QuestionPage {
   @ViewChild(Slides) slides: Slides;
+  apiQuestions: any = [];
   questions: any = [];
   testAnswers: any = {};
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
-    for(let singleQuestion of apiQuestions) {
-        console.log(singleQuestion);
+  constructor(public navCtrl: NavController, 
+    public navParams: NavParams,
+    public questionsProv: Questions) {
+    questionsProv.getQuestions(window.localStorage.getItem("token"))
+    .map(res => res.json())
+    .subscribe(res => {
+      console.log(res);
+      this.apiQuestions = res;
+      console.log(this.apiQuestions);
+      for(let singleQuestion of this.apiQuestions) {
         if(!this.questions[singleQuestion.Question_Number - 1]) {
           this.questions[singleQuestion.Question_Number - 1] = {};
           }
         this.questions[singleQuestion.Question_Number - 1][singleQuestion.Answer_ID] = singleQuestion;
-        };
-      console.log(this.questions);
+        }
+    }, error => {
+      alert("warning Will Robinson");
+    });
   }
 
   ionViewDidLoad() {

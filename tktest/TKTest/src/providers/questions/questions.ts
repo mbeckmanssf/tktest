@@ -10,9 +10,14 @@ import 'rxjs/add/operator/map';
 */
 @Injectable()
 export class Questions {
-
+  token: any = {};
+  baseUrl: string = "http://marenssf-phortonssf.c9users.io:8080/api";
+  path: string = "/Questions";
   constructor(public http: Http) {
-    console.log('Hello QuestionsProvider Provider');
+    console.log('Hello Questions Provider');
   }
-
+  getQuestions(token) {
+    return this.http.get(
+      this.baseUrl + this.path + "?access_token=" + token);
+    }
 }
