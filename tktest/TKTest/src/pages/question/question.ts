@@ -62,15 +62,12 @@ export class QuestionPage {
       this.slides.lockSwipes(true);
     } else {
       //finished the test, move to results
-      //let tests: any = JSON.parse(window.localStorage.getItem("tests")) || [];
+      //identify user and document date and time of test
       this.testAnswers.createDate = new Date().toISOString();
       this.testAnswers.userId = window.localStorage.getItem("userId");
-      //tests.push(this.testAnswers);
-      //window.localStorage.setItem("tests", JSON.stringify(tests));
-      console.log(this.userId);
-      console.log(this.testAnswers);
       console.log("test successful");
-      this.testResults.saveTest(this.testAnswers)
+      //save test and move to results display
+      this.testResults.saveTest(window.localStorage.getItem("token"), this.testAnswers)
       .map(res => res.json())
       .subscribe(res => {
         this.navCtrl.setRoot(ResultsPage, {

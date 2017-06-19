@@ -18,15 +18,16 @@ export class TestResults {
   constructor(public http: Http) {
     console.log('Hello TestResults Provider');
   }
-  saveTest(testAnswers) {
+  saveTest(token, testAnswers) {
     return this.http.post(
-      this.baseUrl + this.path,
+      this.baseUrl + this.path + "?access_token=" + token,
       testAnswers
     );
   }
   getTests(token) {
     this.userId = window.localStorage.getItem("userId");
+    console.log(this.baseUrl + this.path + "?filter[where][userId]=" + this.userId + "&?access_token=" + token);
     return this.http.get(
-      this.baseUrl + this.path + "?filter[where][userId]=" + this.userId)
+      this.baseUrl + this.path + "?filter[where][userId]=" + this.userId + "&?access_token=" + token)
   }
 }

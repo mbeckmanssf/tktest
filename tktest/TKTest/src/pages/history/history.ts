@@ -24,6 +24,7 @@ export class HistoryPage {
 //view list of all tests taken
   ionViewDidLoad() {
     console.log('ionViewDidLoad HistoryPage');
+    console.log(window.localStorage.getItem("token"))
     this.testResults.getTests(window.localStorage.getItem("token"))
     .map(res => res.json())
     .subscribe(res => {
