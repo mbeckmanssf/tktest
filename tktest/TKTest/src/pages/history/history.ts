@@ -16,7 +16,7 @@ import { TestResults } from '../../providers/test-results/test-results';
   templateUrl: 'history.html',
 })
 export class HistoryPage {
-  tests: any; //this is value u want to pass, you passed this.test below instead of this.test
+  tests: any;
   constructor(public navCtrl: NavController, 
     public navParams: NavParams,
     public testResults: TestResults) {

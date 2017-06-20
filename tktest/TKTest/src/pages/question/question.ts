@@ -38,7 +38,7 @@ export class QuestionPage {
         this.questions[singleQuestion.Question_Number - 1][singleQuestion.Answer_ID] = singleQuestion;
         }
     }, error => {
-      alert("warning Will Robinson");
+      alert("Questions could not be found, please try again.");
     });
   }
 

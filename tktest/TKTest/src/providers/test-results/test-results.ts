@@ -28,6 +28,8 @@ export class TestResults {
     this.userId = window.localStorage.getItem("userId");
     console.log(this.baseUrl + this.path + "?filter[where][userId]=" + this.userId + "&?access_token=" + token);
     return this.http.get(
-      this.baseUrl + this.path + "?filter[where][userId]=" + this.userId + "&?access_token=" + token)
+      this.baseUrl + this.path + "?filter[where][userId]=" + this.userId + "&access_token=" + token) 
+      // removed the ? from &?access_token and it worked! -_- for some reason it worked with the ? for me, weird.
+      // this.baseUrl + this.path + "?access_token=" + token)
   }
 }
